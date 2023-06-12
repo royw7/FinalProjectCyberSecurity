@@ -1,6 +1,6 @@
  local Util = {}
 
- function Util.tprint (tbl, indent)
+ function Util.tprint (tbl, indent) -- print table content 
     if not indent then indent = 0 end
     local toprint = string.rep(" ", indent) .. "{\r\n"
     indent = indent + 2 
@@ -25,7 +25,7 @@
     print(toprint) 
   end
 
-function Util.tableToString(tab) 
+function Util.tableToString(tab) -- concanate table values into string
     local str = ""
     for _, v in pairs(tab) do
         if(type(v) == "string") then
@@ -38,7 +38,7 @@ function Util.tableToString(tab)
     return str
   end
 
-  function Util.disp_time(time)
+  function Util.disp_time(time) -- format seconds to time readable
     local days = math.floor(time/86400)
     local hours = math.floor((time % 86400)/3600)
     local minutes = math.floor((time % 3600)/60)
@@ -46,13 +46,13 @@ function Util.tableToString(tab)
     return string.format("%d days %02d hours %02d minutes %02d seconds",days,hours,minutes,seconds)
   end
 
-  function Util.file_exists(file)
+  function Util.file_exists(file) -- checks if file exists 
     local f = io.open(file, "rb")
     if f then f:close() end
     return f ~= nil
   end
 
-  function Util.lines_from(file)
+  function Util.lines_from(file) -- return tablular data of file lines
     if not Util.file_exists(file) then return {} end
     local lines = {}
     for line in io.lines(file) do 
